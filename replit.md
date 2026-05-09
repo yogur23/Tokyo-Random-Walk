@@ -1,44 +1,54 @@
-# [Project name]
+# 東京ランダム散歩OS
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+iPhone対応のPWAウェブアプリ。ワンタップで東京23区の散歩ミッションをランダム生成する。
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- `pnpm --filter @workspace/tokyo-walk run dev` — フロントエンド開発サーバー（ポートはPORT環境変数）
+- `pnpm run typecheck` — 全パッケージのタイプチェック
+- `pnpm run build` — タイプチェック＋ビルド
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- フロントエンド: React + Vite
+- スタイル: Tailwind CSS v4, shadcn/ui
+- アニメーション: framer-motion
+- ルーティング: wouter（現状はシングルページのため実質未使用）
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/tokyo-walk/src/App.tsx` — メインアプリロジック（全ランダム生成ロジックはここ）
+- `artifacts/tokyo-walk/src/index.css` — ダークテーマパレット（サイバーパンク×東京）
+- `artifacts/tokyo-walk/index.html` — PWAメタタグ（iPhone対応）
+- `artifacts/tokyo-walk/public/manifest.json` — PWAマニフェスト
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- バックエンド不要: 全ランダム生成はクライアントサイドのMath.random()で完結
+- 常時ダークモード: ライトモードトグルなし、htmlにdarkクラス固定
+- PWA対応: apple-mobile-web-app-capable、viewport-fit=cover、manifest.json
+- フォント: Noto Sans JP（Google Fonts）
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- エリア（12種）: 下町、商店街、工場地帯、住宅街、繁華街、川沿い、寺社仏閣、再開発、坂道、市場周辺、路地裏、公園
+- テーマ（12種）: 猫を探せ、昭和の残り香、インスタ映えゼロ、など
+- 特殊ルール（12種）: 右にしか曲がれない、スマホのナビ禁止、など
+- 途中イベント（15種から3つ）: 通り雨、謎の行列、猫登場、など
+- 途中イベント単体の再抽選ボタンあり
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- iPhoneで使いやすいモバイルファーストUI
+- ダークテーマ固定
+- 日本語UI
+- ゲーム感・サイバーパンクな雰囲気
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- index.cssの先頭行はGoogle Fonts @importでなければならない（PostCSSの制約）
+- framer-motionは既にpackage.jsonに含まれている
 
 ## Pointers
 

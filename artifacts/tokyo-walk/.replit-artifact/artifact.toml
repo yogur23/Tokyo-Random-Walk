@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "東京ランダム散歩OS"
+version = "1.0.0"
+id = "artifacts/tokyo-walk"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22118
+
+[services.development]
+run = "pnpm --filter @workspace/tokyo-walk run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/tokyo-walk", "run", "build" ]
+publicDir = "artifacts/tokyo-walk/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22118"
+BASE_PATH = "/"
