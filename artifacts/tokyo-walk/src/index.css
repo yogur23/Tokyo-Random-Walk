@@ -56,56 +56,58 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-:root, .dark {
-  /* 焦茶・セピア・琥珀 — 喫茶店の木のカウンター、古い地図、夕方の商店街 */
-  --background: 32 18% 9%;
-  --foreground: 40 28% 88%;
-  --border: 32 14% 22%;
+:root {
+  /* 生成り・紙・喫茶店 — 散歩雑誌、昼下がりの東京 */
+  --background: 38 38% 96%;
+  --foreground: 28 28% 18%;
+  --border: 35 22% 82%;
 
-  --card: 32 14% 13%;
-  --card-foreground: 40 28% 88%;
-  --card-border: 32 14% 22%;
+  --card: 38 30% 99%;
+  --card-foreground: 28 28% 18%;
+  --card-border: 35 22% 82%;
 
-  --popover: 32 14% 13%;
-  --popover-foreground: 40 28% 88%;
-  --popover-border: 32 14% 22%;
+  --popover: 38 30% 99%;
+  --popover-foreground: 28 28% 18%;
+  --popover-border: 35 22% 82%;
 
-  --primary: 38 82% 58%;
-  --primary-foreground: 32 18% 9%;
+  --primary: 24 62% 40%;
+  --primary-foreground: 38 38% 98%;
 
-  --secondary: 18 50% 50%;
-  --secondary-foreground: 40 28% 88%;
+  --secondary: 185 28% 40%;
+  --secondary-foreground: 38 38% 98%;
 
-  --muted: 32 12% 18%;
-  --muted-foreground: 35 14% 55%;
+  --muted: 38 28% 91%;
+  --muted-foreground: 30 14% 50%;
 
-  --accent: 38 82% 58%;
-  --accent-foreground: 32 18% 9%;
+  --accent: 24 62% 40%;
+  --accent-foreground: 38 38% 98%;
 
-  --destructive: 14 58% 50%;
-  --destructive-foreground: 40 28% 88%;
+  --destructive: 12 58% 48%;
+  --destructive-foreground: 38 38% 98%;
 
-  --input: 32 14% 22%;
-  --ring: 38 82% 58%;
+  --input: 35 22% 82%;
+  --ring: 24 62% 40%;
 
-  --chart-1: 38 82% 58%;
-  --chart-2: 175 28% 46%;
-  --chart-3: 135 22% 48%;
-  --chart-4: 18 50% 50%;
-  --chart-5: 260 22% 55%;
+  --chart-1: 24 62% 40%;
+  --chart-2: 185 28% 40%;
+  --chart-3: 138 26% 44%;
+  --chart-4: 16 52% 46%;
+  --chart-5: 260 20% 52%;
 
   --app-font-sans: 'Noto Sans JP', sans-serif;
   --app-font-serif: 'Noto Serif JP', serif;
   --app-font-mono: Menlo, monospace;
   --radius: 12px;
 
-  --shadow-sm: 0 1px 3px 0 rgba(20, 12, 6, 0.35);
-  --shadow: 0 2px 6px 0 rgba(20, 12, 6, 0.4), 0 1px 2px -1px rgba(20, 12, 6, 0.3);
-  --shadow-md: 0 4px 10px -1px rgba(20, 12, 6, 0.45), 0 2px 4px -2px rgba(20, 12, 6, 0.3);
-  --shadow-lg: 0 10px 20px -3px rgba(20, 12, 6, 0.5), 0 4px 8px -4px rgba(20, 12, 6, 0.35);
+  --shadow-sm: 0 1px 3px 0 rgba(60, 35, 15, 0.10);
+  --shadow: 0 2px 6px 0 rgba(60, 35, 15, 0.12), 0 1px 2px -1px rgba(60, 35, 15, 0.08);
+  --shadow-md: 0 4px 12px -1px rgba(60, 35, 15, 0.14), 0 2px 4px -2px rgba(60, 35, 15, 0.10);
+  --shadow-lg: 0 10px 24px -3px rgba(60, 35, 15, 0.16), 0 4px 8px -4px rgba(60, 35, 15, 0.10);
 
-  --button-outline: rgba(255, 235, 180, 0.10);
-  --badge-outline: rgba(255, 235, 180, 0.05);
+  --elevate-1: rgba(60, 35, 15, 0.04);
+  --elevate-2: rgba(60, 35, 15, 0.08);
+  --button-outline: rgba(60, 35, 15, 0.12);
+  --badge-outline: rgba(60, 35, 15, 0.06);
 }
 
 @layer base {
