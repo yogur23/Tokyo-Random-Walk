@@ -35,35 +35,35 @@ const SPECIAL_RULES = [
 ];
 
 const EVENTS = [
-  // 写真ミッション
-  "洗濯物が印象的な風景を一枚撮る",
-  "影が面白い路地を探して撮る",
-  "夕方が一番きれいな道を見つけて撮る",
-  "住みたくなった場所を記録する",
-  "電線と空の組み合わせが好きな場所を撮る",
-  "誰かの生活を感じるものを一つ撮る",
-  // 音探索
-  "一番落ち着く音のする場所に3分いる",
-  "気になる音を追いかけて路地を曲がる",
-  "川や水の音を探して聴く",
-  "商店街のBGMを最後まで聴く",
-  "静かすぎる路地を見つける",
-  // 匂い探索
-  "パン屋か焙煎コーヒーの匂いを追う",
-  "懐かしい匂いがする場所に立ち止まる",
-  "雨上がりの匂いを探して路地に入る",
-  "夕飯の匂いがする住宅街の一角を探す",
-  // 生活観察・体験
-  "地元の人しかいない喫茶店に入る",
-  "気になる路地を制限時間なしで歩く",
-  "商店街の一番古そうな店を探す",
-  "看板を読むだけで時間を使う",
-  "立ち止まって空を5分見る",
-  "立ち食いそばかうどんを食べる",
-  "猫を見つけたら写真を撮る",
-  "気になる神社があればお参りする",
-  "地図なしで30分歩いてから現在地を確認する",
-  "夕暮れ時に同じ場所を2回歩く",
+  // 写真
+  "洗濯物が干してある風景で、いちばん好きなものを一枚撮る",
+  "ここに住みたいと思った場所を写真に撮っておく",
+  "電線と空の組み合わせが気に入った場所を撮る",
+  "誰かの暮らしを感じるものをひとつ撮る",
+  "夕方の光が一番きれいな道を探して撮る",
+  "影の形が面白い路地を探して撮る",
+  // 音
+  "いちばん落ち着く音のする場所を探して、そこでしばらく立ち止まる",
+  "気になる音の方向へ、そのまま歩いていく",
+  "川や水の音を探して、見つけたら耳を澄ます",
+  "商店街に流れている曲を、途切れるまで聴いてみる",
+  "音がほとんどしない路地を見つける",
+  // 匂い
+  "パン屋かコーヒーの匂いがしたら、その方向へ向かう",
+  "なんとなく懐かしい匂いのする場所で少し立ち止まる",
+  "夕飯の匂いがしてくる住宅街の一角を探す",
+  "雨上がりっぽい匂いのする路地を探して入ってみる",
+  // 人・生活
+  "地元の人しかいなさそうな喫茶店を見つけて入ってみる",
+  "商店街で、一番長くやってそうなお店を探す",
+  "気になる路地を、時間を気にせず歩く",
+  "看板の文字を、全部ゆっくり読む",
+  "空が見える場所を探して、5分だけぼーっとする",
+  "立ち食いそばかうどんをどこかで食べる",
+  "猫を見かけたら、写真を撮るまでついていく",
+  "気になるお社や神社があればお参りする",
+  "30分だけ地図を見ずに歩いて、どこにいるか確認する",
+  "同じ道を、行きと帰りで違う時間に歩いてみる",
 ];
 
 const getRandomItem = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
@@ -150,15 +150,15 @@ export function Home() {
               </div>
               
               <div className="flex flex-col items-center gap-3">
-                <span className="text-[10px] tracking-[0.3em] font-sans text-muted-foreground uppercase">
-                  Tokyo · 散歩 · ランダム
+                <span className="text-[10px] tracking-[0.25em] font-sans text-muted-foreground">
+                  東京 · 今日の散歩
                 </span>
                 <h1 className="text-3xl sm:text-4xl font-serif font-bold text-foreground">
                   東京ランダム散歩OS
                 </h1>
-                <div className="w-12 h-px bg-border my-2"></div>
-                <p className="font-sans text-sm text-muted-foreground tracking-wide">
-                  知らない東京が、すぐそこにある。
+                <div className="w-10 h-px bg-border my-2 opacity-60"></div>
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+                  どこかへ行きたい気持ちだけで、<br/>十分だと思う。
                 </p>
               </div>
             </div>
@@ -208,8 +208,8 @@ export function Home() {
               <span className="text-xs text-muted-foreground tracking-widest">
                 {new Date().toLocaleDateString('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' })}
               </span>
-              <h2 className="text-xl font-serif font-bold text-foreground tracking-wider">
-                今日の散歩ルート
+              <h2 className="text-xl font-serif font-bold text-foreground tracking-wide">
+                今日の散歩
               </h2>
             </header>
 
