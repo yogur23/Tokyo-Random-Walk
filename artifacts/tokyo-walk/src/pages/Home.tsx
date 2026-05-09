@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Footprints, Camera, Sparkles, BookOpen, RotateCw, Smartphone, Compass } from "lucide-react";
+import { MapPin, Camera, BookOpen, Footprints, RotateCw, Smartphone, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const AREAS = [
@@ -144,27 +144,53 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="text-center space-y-6">
-              <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-8">
-                <Footprints className="w-10 h-10 text-primary" />
+            <div className="text-center space-y-6 w-full">
+              <div className="w-16 h-16 mx-auto rounded-xl border border-primary bg-primary/5 flex items-center justify-center mb-8 rotate-[-2deg]">
+                <MapPin className="w-8 h-8 text-primary" />
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-wider text-foreground">
-                東京ランダム散歩OS
-              </h1>
-              <p className="text-muted-foreground text-sm max-w-[280px] mx-auto leading-relaxed pt-2">
-                今日はどこへ行こうか。<br/>東京のどこかが、あなたを待っている。
-              </p>
+              
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-[10px] tracking-[0.3em] font-sans text-muted-foreground uppercase">
+                  Tokyo · 散歩 · ランダム
+                </span>
+                <h1 className="text-3xl sm:text-4xl font-serif font-bold text-foreground">
+                  東京ランダム散歩OS
+                </h1>
+                <div className="w-12 h-px bg-border my-2"></div>
+                <p className="font-sans text-sm text-muted-foreground tracking-wide">
+                  知らない東京が、すぐそこにある。
+                </p>
+              </div>
             </div>
 
-            <Button 
-              size="lg" 
-              className="w-full h-16 text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg rounded-2xl transition-all active:scale-[0.98]"
-              onClick={handleRoll}
-              data-testid="button-start"
-            >
-              <Compass className="w-5 h-5 mr-2" />
-              今日の散歩を決める
-            </Button>
+            <div className="w-full space-y-4">
+              <Button 
+                size="lg" 
+                className="w-full h-14 text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-md rounded-xl transition-all active:scale-[0.98]"
+                onClick={handleRoll}
+                data-testid="button-start"
+              >
+                <Compass className="w-5 h-5 mr-2" />
+                今日の散歩をはじめる
+              </Button>
+              
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  variant="outline"
+                  className="h-12 text-sm border-border text-foreground hover:bg-muted/50 rounded-xl"
+                  onClick={handleRoll}
+                >
+                  知らない東京へ
+                </Button>
+                <Button
+                  variant="outline"
+                  className="h-12 text-sm border-border text-foreground hover:bg-muted/50 rounded-xl"
+                  onClick={handleRoll}
+                >
+                  寄り道して帰ろう
+                </Button>
+              </div>
+            </div>
             
             <div className="flex items-center text-xs text-muted-foreground mt-auto pt-16">
               <Smartphone className="w-4 h-4 mr-2 opacity-50" />
@@ -178,38 +204,52 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <header className="flex items-center justify-center py-4">
-              <h2 className="text-sm font-bold text-muted-foreground tracking-widest">
-                今日の散歩
+            <header className="flex flex-col items-center justify-center py-6 gap-2">
+              <span className="text-xs text-muted-foreground tracking-widest">
+                {new Date().toLocaleDateString('ja-JP', { month: 'long', day: 'numeric', weekday: 'short' })}
+              </span>
+              <h2 className="text-xl font-serif font-bold text-foreground tracking-wider">
+                今日の散歩ルート
               </h2>
             </header>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               <ResultCard 
                 title="エリア" 
-                icon={<MapPin className="w-5 h-5 text-secondary" />} 
-                content={displayedResult?.area} 
+                content={
+                  <div className="space-y-1 mt-2">
+                    <div className="font-bold text-lg sm:text-xl text-foreground font-sans">
+                      {displayedResult?.area}
+                    </div>
+                    <div className="text-xs text-muted-foreground">今日のスタート地点</div>
+                  </div>
+                } 
                 isAnimating={isAnimating}
                 color="secondary"
               />
               
               <ResultCard 
                 title="テーマ" 
-                icon={<Camera className="w-5 h-5 text-chart-3" />} 
-                content={displayedResult?.theme} 
+                content={
+                  <div className="space-y-1 mt-2">
+                    <div className="font-bold text-base text-foreground font-sans">
+                      {displayedResult?.theme}
+                    </div>
+                    <div className="text-xs text-muted-foreground">今日のミッション</div>
+                  </div>
+                } 
                 isAnimating={isAnimating}
                 color="chart-3"
               />
               
               <ResultCard 
-                title="特殊ルール" 
-                icon={<Sparkles className="w-5 h-5 text-destructive" />} 
+                title="しばり" 
                 content={
-                  <ul className="space-y-3 mt-1">
+                  <ul className="space-y-2.5 mt-3">
                     {displayedResult?.rules.map((r, i) => (
-                      <li key={i} className="flex items-start text-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-destructive/50 mt-2 mr-3 shrink-0" />
-                        <span className="leading-relaxed">{r}</span>
+                      <li key={i} className="flex items-start text-sm text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-border mt-1.5 mr-3 shrink-0" />
+                        <span className="leading-relaxed font-sans">{r}</span>
                       </li>
                     ))}
                   </ul>
@@ -219,14 +259,15 @@ export function Home() {
               />
               
               <ResultCard 
-                title="途中のできごと" 
-                icon={<BookOpen className="w-5 h-5 text-chart-4" />} 
+                title="途中でやること" 
                 content={
-                  <ol className="space-y-3 mt-1">
+                  <ol className="space-y-4 mt-4">
                     {displayedResult?.events.map((e, i) => (
-                      <li key={i} className="flex items-start bg-background/50 rounded-lg p-3 border border-border/40 text-sm">
-                        <span className="font-bold text-chart-4/70 mr-3 mt-0.5">{i + 1}.</span>
-                        <span className="leading-relaxed">{e}</span>
+                      <li key={i} className="flex items-start text-sm text-foreground">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center mt-0.5 mr-3">
+                          {i + 1}
+                        </span>
+                        <span className="leading-relaxed font-sans pt-0.5">{e}</span>
                       </li>
                     ))}
                   </ol>
@@ -235,31 +276,31 @@ export function Home() {
                 color="chart-4"
                 action={
                   <Button 
-                    variant="outline" 
+                    variant="ghost" 
                     size="sm" 
-                    className="h-8 text-xs ml-auto border-chart-4/30 text-chart-4 hover:bg-chart-4/10 rounded-full"
+                    className="h-8 text-xs ml-auto text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-full"
                     onClick={handleReRollEvents}
                     disabled={isAnimating}
                     data-testid="button-reroll-events"
                   >
-                    <RotateCw className={`w-3 h-3 mr-1 ${isAnimating ? 'animate-spin' : ''}`} />
+                    <RotateCw className={`w-3 h-3 mr-1.5 ${isAnimating ? 'animate-spin' : ''}`} />
                     できごとを引き直す
                   </Button>
                 }
               />
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-md border-t border-border/50 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/90 backdrop-blur-md border-t border-border/50 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
               <div className="max-w-lg mx-auto">
                 <Button 
                   size="lg" 
-                  className="w-full h-14 font-bold bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl shadow-md transition-all active:scale-[0.98]"
+                  className="w-full h-14 font-bold bg-muted text-foreground hover:bg-muted/80 rounded-xl transition-all active:scale-[0.98] border border-border"
                   onClick={handleRoll}
                   disabled={isAnimating}
                   data-testid="button-reroll-all"
                 >
-                  <RotateCw className={`w-5 h-5 mr-2 ${isAnimating ? 'animate-spin' : ''}`} />
-                  もう一度引き直す
+                  <RotateCw className={`w-4 h-4 mr-2 ${isAnimating ? 'animate-spin' : ''}`} />
+                  別のルートを引く
                 </Button>
               </div>
             </div>
@@ -270,20 +311,19 @@ export function Home() {
   );
 }
 
-function ResultCard({ title, icon, content, isAnimating, color, action }: { title: string, icon: React.ReactNode, content: React.ReactNode, isAnimating: boolean, color: string, action?: React.ReactNode }) {
+function ResultCard({ title, content, isAnimating, color, action }: { title: string, content: React.ReactNode, isAnimating: boolean, color: string, action?: React.ReactNode }) {
   return (
-    <div className="bg-card border border-border/60 rounded-2xl p-5 relative overflow-hidden shadow-sm">
-      <div className="absolute top-0 left-0 w-1.5 h-full opacity-60" style={{ backgroundColor: `var(--color-${color})` }} />
+    <div className="bg-card border border-border rounded-xl p-5 relative overflow-hidden shadow-sm">
+      <div className="absolute top-0 left-0 w-full h-[3px]" style={{ backgroundColor: `var(--color-${color})` }} />
       
-      <div className="flex items-center justify-between mb-3 pl-2">
-        <div className="flex items-center">
-          {icon}
-          <h3 className="ml-2.5 font-bold text-sm tracking-widest text-muted-foreground">{title}</h3>
-        </div>
+      <div className="flex items-center justify-between mb-1">
+        <h3 className="font-serif font-medium text-[13px] text-muted-foreground flex items-center">
+          <span className="mr-1.5 opacity-70">●</span> {title}
+        </h3>
         {action}
       </div>
       
-      <div className={`transition-opacity duration-300 pl-2 ${isAnimating ? 'opacity-40' : 'opacity-100'} font-sans`}>
+      <div className={`transition-opacity duration-300 ${isAnimating ? 'opacity-40' : 'opacity-100'} font-sans`}>
         {content}
       </div>
     </div>
